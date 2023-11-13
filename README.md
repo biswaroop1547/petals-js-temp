@@ -2,7 +2,7 @@
 
 ## Roadmap
 
-- [x] Try to connect to petals bootstrap peers
+- [] Try to connect to petals bootstrap peers
 
 ## Run the example
 
@@ -10,3 +10,7 @@
 npm install
 npm start
 ```
+
+### Development
+
+For any modifications, modify [index.js](./index.js)

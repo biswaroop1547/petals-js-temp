@@ -29,12 +29,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     peerDiscovery: [
       bootstrap({
         list: [
-          "/dns/bootstrap1.petals.dev/tcp/31337/p2p/QmedTaZXmULqwspJXz44SsPZyTNKxhnnFvYRajfH7MGhCY",
+          "/dns/bootstrap1.petals.dev/tcp/31337/p2p/QmedTaZXmULqwspJXz44SsPZyTNKxhnnFvYRajfH7MGhCY", // petals peers
           "/dns/bootstrap2.petals.dev/tcp/31338/p2p/QmQGTqmM7NKjV6ggU1ZCap8zWiyKR89RViDXiqehSiCpY5",
           "/dns6/bootstrap1.petals.dev/tcp/31337/p2p/QmedTaZXmULqwspJXz44SsPZyTNKxhnnFvYRajfH7MGhCY",
           "/dns6/bootstrap2.petals.dev/tcp/31338/p2p/QmQGTqmM7NKjV6ggU1ZCap8zWiyKR89RViDXiqehSiCpY5",
           "/ip4/159.89.214.152/tcp/31337/p2p/QmedTaZXmULqwspJXz44SsPZyTNKxhnnFvYRajfH7MGhCY",
           "/ip4/159.203.156.48/tcp/31338/p2p/QmQGTqmM7NKjV6ggU1ZCap8zWiyKR89RViDXiqehSiCpY5",
+
+          
+  //         '/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb', // libp2p dev peers
+  // '/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN'
         ]
       })
     ],
@@ -66,11 +70,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   libp2p.addEventListener('peer:discovery', (evt) => {
     const peerInfo = evt.detail
     log(`Found peer ${peerInfo.id.toString()}`)
+    log(`detail: ${evt.detail.multiaddrs.toString()}`)
 
     // dial them when we discover them
-    libp2p.dial(peerInfo.id).catch(err => {
-      log(`Could not dial ${peerInfo.id.toString()}`, err)
-    })
+    // libp2p.dial(peerInfo.id).catch(err => {
+    //   console.log(err) // error while dialing
+    //   log(`Could not dial ${peerInfo.id.toString()}`, err)
+    // })
   })
 
   // Listen for new connections to peers
